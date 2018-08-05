@@ -88,7 +88,8 @@ public class ProdutoRepository {
            produto = em.createQuery("from Produto").getResultList();
 
        }catch (Exception e){
-            System.out.println("Erro: " + e.getMessage());
+            em.getTransaction().rollback();
+            e.printStackTrace();
        }finally {
 
             em.close();
